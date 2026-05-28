@@ -1,1 +1,1054 @@
-{"name":"1. CONSULTAR_DISPONIBILIDAD_DEF","flow":[{"id":1,"module":"gateway:CustomWebHook","version":1,"parameters":{"hook":3077877,"maxResults":1},"mapper":{},"metadata":{"designer":{"x":0,"y":150},"restore":{"parameters":{"hook":{"label":"My gateway-webhook webhook","data":{"editable":"true"}}}},"parameters":[{"name":"hook","type":"hook:gateway-webhook","label":"Webhook","required":true},{"name":"maxResults","type":"number","label":"Maximum number of results"}]}},{"id":2,"module":"util:SetVariables","version":1,"parameters":{},"mapper":{"scope":"roundtrip","variables":[{"name":"fechaISO","value":"{{formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"YYYY-MM-DD\")}}"},{"name":"fechaSiguienteISO","value":"{{formatDate(addDays(parseDate(1.fecha; \"DD/MM/YYYY\"); 1); \"YYYY-MM-DD\")}}"},{"name":"weekDay","value":"{{formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"d\"; \"Europe/Madrid\")}}"},{"name":"apertura1Min","value":"{{switch(formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"d\"; \"Europe/Madrid\"); \"0\"; 660; 0; 660; \"1\"; -1; 1; -1; \"2\"; -1; 2; -1; \"3\"; 1020; 3; 1020; \"4\"; 660; 4; 660; \"5\"; 600; 5; 600; \"6\"; 660; 6; 660; -1)}}"},{"name":"cierre1Min","value":"{{switch(formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"d\"; \"Europe/Madrid\"); \"0\"; 840; 0; 840; \"1\"; -1; 1; -1; \"2\"; -1; 2; -1; \"3\"; 1260; 3; 1260; \"4\"; 840; 4; 840; \"5\"; 840; 5; 840; \"6\"; 1440; 6; 1440; -1)}}"},{"name":"apertura2Min","value":"{{switch(formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"d\"; \"Europe/Madrid\"); \"0\"; 1020; 0; 1020; \"1\"; -1; 1; -1; \"2\"; -1; 2; -1; \"3\"; -1; 3; -1; \"4\"; 1020; 4; 1020; \"5\"; 1020; 5; 1020; \"6\"; -1; 6; -1; -1)}}"},{"name":"cierre2Min","value":"{{switch(formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"d\"; \"Europe/Madrid\"); \"0\"; 1260; 0; 1260; \"1\"; -1; 1; -1; \"2\"; -1; 2; -1; \"3\"; -1; 3; -1; \"4\"; 1260; 4; 1260; \"5\"; 1380; 5; 1380; \"6\"; -1; 6; -1; -1)}}"},{"name":"C1","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -15); \"HH:mm\")}}"},{"name":"C2","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 15); \"HH:mm\")}}"},{"name":"C3","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -30); \"HH:mm\")}}"},{"name":"C4","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 30); \"HH:mm\")}}"},{"name":"C5","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -45); \"HH:mm\")}}"},{"name":"C6","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 45); \"HH:mm\")}}"},{"name":"C7","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -60); \"HH:mm\")}}"},{"name":"C8","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 60); \"HH:mm\")}}"},{"name":"C9","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -75); \"HH:mm\")}}"},{"name":"C10","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 75); \"HH:mm\")}}"},{"name":"C11","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -90); \"HH:mm\")}}"},{"name":"C12","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 90); \"HH:mm\")}}"},{"name":"C13","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -105); \"HH:mm\")}}"},{"name":"C14","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 105); \"HH:mm\")}}"},{"name":"C15","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -120); \"HH:mm\")}}"},{"name":"C16","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 120); \"HH:mm\")}}"},{"name":"C17","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -135); \"HH:mm\")}}"},{"name":"C18","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 135); \"HH:mm\")}}"},{"name":"C19","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -150); \"HH:mm\")}}"},{"name":"C20","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 150); \"HH:mm\")}}"},{"name":"C21","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -165); \"HH:mm\")}}"},{"name":"C22","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 165); \"HH:mm\")}}"},{"name":"C23","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -180); \"HH:mm\")}}"},{"name":"C24","value":"{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 180); \"HH:mm\")}}"}]},"metadata":{"designer":{"x":300,"y":150}}},{"id":3,"module":"google-calendar:searchEvents","version":5,"parameters":{"__IMTCONN__":7578567},"mapper":{"calendar":"b29708f3e9429dd1a654bbe04357fdf7b9a27accb84b499a1c159a2d814deae0@group.calendar.google.com","timeMin":"{{2.fechaISO}}T00:00:00","timeMax":"{{2.fechaSiguienteISO}}T00:00:00","singleEvents":true,"orderBy":"startTime","limit":"100"},"metadata":{"designer":{"x":600,"y":150},"restore":{"parameters":{"__IMTCONN__":{"label":"My Google connection (iaworkflows.engine@gmail.com)","data":{"scoped":"true","connection":"google"}}},"expect":{"calendar":{"mode":"chose","label":"minigolf"},"eventTypes":{"mode":"chose"},"orderBy":{"mode":"chose","label":"Start Time (ascending)"}}},"parameters":[{"name":"__IMTCONN__","type":"account:google","label":"Connection","required":true}],"expect":[{"name":"calendar","type":"select","label":"Calendar ID","required":true},{"name":"timeMin","type":"date","label":"Start Date","time":true},{"name":"timeMax","type":"date","label":"End Date","time":true},{"name":"updatedMin","type":"date","label":"Updated from","time":true},{"name":"singleEvents","type":"boolean","label":"Single Events","required":true},{"name":"q","type":"text","label":"Query"},{"name":"eventTypes","type":"select","label":"Event Types","multiple":true,"validate":{"enum":["default","fromGmail","focusTime","outOfOffice","workingLocation"]}},{"name":"orderBy","type":"select","label":"Order By","validate":{"enum":["startTime","updated"]}},{"name":"limit","type":"uinteger","label":"Limit"}]}},{"id":10,"module":"util:TextAggregator","version":1,"parameters":{"feeder":3,"rowSeparator":"other","otherRowSeparator":""},"mapper":{"value":"{{if(formatDate(3.start; \"HH:mm\"; \"Europe/Madrid\") = \"00:00\"; \"B\"; if((parseNumber(formatDate(3.end; \"X\"; \"Europe/Madrid\")) - parseNumber(formatDate(3.start; \"X\"; \"Europe/Madrid\"))) >= 7200 + and + parseNumber(formatDate(3.start; \"X\"; \"Europe/Madrid\")) < parseNumber(formatDate(addMinutes(parseDate(2.fechaISO; \"YYYY-MM-DD\"); ((parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5))) + 15)); \"X\"; \"Europe/Madrid\")) + and + parseNumber(formatDate(3.end; \"X\"; \"Europe/Madrid\")) > parseNumber(formatDate(addMinutes(parseDate(2.fechaISO; \"YYYY-MM-DD\"); (parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5)))); \"X\"; \"Europe/Madrid\")); \"B\";  if(parseNumber(formatDate(3.start; \"X\"; \"Europe/Madrid\")) = parseNumber(formatDate(addMinutes(parseDate(2.fechaISO; \"YYYY-MM-DD\"); (parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5)))); \"X\"; \"Europe/Madrid\")); \"R\"; formatDate(3.start; \"HH:mm\"; \"Europe/Madrid\"))))}}"},"metadata":{"designer":{"x":900,"y":150},"restore":{"extra":{"feeder":{"label":"Google Calendar - Search Events [3]"}},"parameters":{"rowSeparator":{"label":"Other"}}},"parameters":[{"name":"rowSeparator","type":"select","label":"Row separator","validate":{"enum":["\n","\t","other"]}},{"name":"otherRowSeparator","type":"text","label":"Separator"}],"expect":[{"name":"value","type":"text","label":"Text"}],"advanced":true}},{"id":5,"module":"util:SetVariables","version":1,"parameters":{},"mapper":{"scope":"roundtrip","variables":[{"name":"slotSolicitadoOcupado","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); true; if(contains(ifempty(10.text; \"\"); \"RR\"); true; if(((((parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5))) + 15) <= 2.cierre2Min)); false; true)))}}"},{"name":"ALT_C1","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C1 + 2.C1); \"\"; if(((((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5))) + 15) <= 2.cierre2Min)); 2.C1; \"\")))}}"},{"name":"ALT_C2","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C2 + 2.C2); \"\"; if(((((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5))) + 15) <= 2.cierre2Min)); 2.C2; \"\")))}}"},{"name":"ALT_C3","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C3 + 2.C3); \"\"; if(((((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5))) + 15) <= 2.cierre2Min)); 2.C3; \"\")))}}"},{"name":"ALT_C4","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C4 + 2.C4); \"\"; if(((((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5))) + 15) <= 2.cierre2Min)); 2.C4; \"\")))}}"},{"name":"ALT_C5","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C5 + 2.C5); \"\"; if(((((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5))) + 15) <= 2.cierre2Min)); 2.C5; \"\")))}}"},{"name":"ALT_C6","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C6 + 2.C6); \"\"; if(((((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5))) + 15) <= 2.cierre2Min)); 2.C6; \"\")))}}"},{"name":"ALT_C7","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C7 + 2.C7); \"\"; if(((((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5))) + 15) <= 2.cierre2Min)); 2.C7; \"\")))}}"},{"name":"ALT_C8","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C8 + 2.C8); \"\"; if(((((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5))) + 15) <= 2.cierre2Min)); 2.C8; \"\")))}}"},{"name":"ALT_C9","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C9 + 2.C9); \"\"; if(((((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5))) + 15) <= 2.cierre2Min)); 2.C9; \"\")))}}"},{"name":"ALT_C10","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C10 + 2.C10); \"\"; if(((((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5))) + 15) <= 2.cierre2Min)); 2.C10; \"\")))}}"},{"name":"ALT_C11","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C11 + 2.C11); \"\"; if(((((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5))) + 15) <= 2.cierre2Min)); 2.C11; \"\")))}}"},{"name":"ALT_C12","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C12 + 2.C12); \"\"; if(((((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5))) + 15) <= 2.cierre2Min)); 2.C12; \"\")))}}"},{"name":"ALT_C13","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C13 + 2.C13); \"\"; if(((((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5))) + 15) <= 2.cierre2Min)); 2.C13; \"\")))}}"},{"name":"ALT_C14","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C14 + 2.C14); \"\"; if(((((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5))) + 15) <= 2.cierre2Min)); 2.C14; \"\")))}}"},{"name":"ALT_C15","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C15 + 2.C15); \"\"; if(((((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5))) + 15) <= 2.cierre2Min)); 2.C15; \"\")))}}"},{"name":"ALT_C16","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C16 + 2.C16); \"\"; if(((((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5))) + 15) <= 2.cierre2Min)); 2.C16; \"\")))}}"},{"name":"ALT_C17","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C17 + 2.C17); \"\"; if(((((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5))) + 15) <= 2.cierre2Min)); 2.C17; \"\")))}}"},{"name":"ALT_C18","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C18 + 2.C18); \"\"; if(((((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5))) + 15) <= 2.cierre2Min)); 2.C18; \"\")))}}"},{"name":"ALT_C19","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C19 + 2.C19); \"\"; if(((((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5))) + 15) <= 2.cierre2Min)); 2.C19; \"\")))}}"},{"name":"ALT_C20","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C20 + 2.C20); \"\"; if(((((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5))) + 15) <= 2.cierre2Min)); 2.C20; \"\")))}}"},{"name":"ALT_C21","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C21 + 2.C21); \"\"; if(((((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5))) + 15) <= 2.cierre2Min)); 2.C21; \"\")))}}"},{"name":"ALT_C22","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C22 + 2.C22); \"\"; if(((((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5))) + 15) <= 2.cierre2Min)); 2.C22; \"\")))}}"},{"name":"ALT_C23","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C23 + 2.C23); \"\"; if(((((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5))) + 15) <= 2.cierre2Min)); 2.C23; \"\")))}}"},{"name":"ALT_C24","value":"{{if(contains(ifempty(10.text; \"\"); \"B\"); \"\"; if(contains(ifempty(10.text; \"\"); 2.C24 + 2.C24); \"\"; if(((((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5))) + 15) <= 2.cierre2Min)); 2.C24; \"\")))}}"}]},"metadata":{"designer":{"x":1200,"y":150},"restore":{"expect":{"scope":{"label":"One cycle"},"variables":{"items":[{"name":{"collapsed":true}},{"name":{"collapsed":true}},{"name":{"collapsed":true}},{"name":{"collapsed":true}}]}}},"expect":[{"name":"variables","spec":[{"name":"name","type":"text","label":"Variable name","required":true},{"name":"value","type":"any","label":"Variable value"}],"type":"array","label":"Variables"},{"name":"scope","type":"select","label":"Variable lifetime","required":true,"validate":{"enum":["roundtrip","execution"]}}],"interface":[{"name":"slotSolicitadoOcupado","type":"any","label":"slotSolicitadoOcupado"},{"name":"ALT_C1","type":"any","label":"ALT_C1"},{"name":"ALT_C2","type":"any","label":"ALT_C2"},{"name":"ALT_C3","type":"any","label":"ALT_C3"},{"name":"ALT_C4","type":"any","label":"ALT_C4"},{"name":"ALT_C5","type":"any","label":"ALT_C5"},{"name":"ALT_C6","type":"any","label":"ALT_C6"},{"name":"ALT_C7","type":"any","label":"ALT_C7"},{"name":"ALT_C8","type":"any","label":"ALT_C8"},{"name":"ALT_C9","type":"any","label":"ALT_C9"},{"name":"ALT_C10","type":"any","label":"ALT_C10"},{"name":"ALT_C11","type":"any","label":"ALT_C11"},{"name":"ALT_C12","type":"any","label":"ALT_C12"},{"name":"ALT_C13","type":"any","label":"ALT_C13"},{"name":"ALT_C14","type":"any","label":"ALT_C14"},{"name":"ALT_C15","type":"any","label":"ALT_C15"},{"name":"ALT_C16","type":"any","label":"ALT_C16"},{"name":"ALT_C17","type":"any","label":"ALT_C17"},{"name":"ALT_C18","type":"any","label":"ALT_C18"},{"name":"ALT_C19","type":"any","label":"ALT_C19"},{"name":"ALT_C20","type":"any","label":"ALT_C20"},{"name":"ALT_C21","type":"any","label":"ALT_C21"},{"name":"ALT_C22","type":"any","label":"ALT_C22"},{"name":"ALT_C23","type":"any","label":"ALT_C23"},{"name":"ALT_C24","type":"any","label":"ALT_C24"}]}},{"id":37,"module":"util:SetVariables","version":1,"parameters":{},"mapper":{"scope":"roundtrip","variables":[{"name":"ALTERNATIVES_TEXT","value":"{{\"ST\" + if(5.ALT_C1 != \"\"; \"|\" + 5.ALT_C1; \"\") + if(5.ALT_C2 != \"\"; \"|\" + 5.ALT_C2; \"\") + if(5.ALT_C3 != \"\"; \"|\" + 5.ALT_C3; \"\") + if(5.ALT_C4 != \"\"; \"|\" + 5.ALT_C4; \"\") + if(5.ALT_C5 != \"\"; \"|\" + 5.ALT_C5; \"\") + if(5.ALT_C6 != \"\"; \"|\" + 5.ALT_C6; \"\") + if(5.ALT_C7 != \"\"; \"|\" + 5.ALT_C7; \"\") + if(5.ALT_C8 != \"\"; \"|\" + 5.ALT_C8; \"\") + if(5.ALT_C9 != \"\"; \"|\" + 5.ALT_C9; \"\") + if(5.ALT_C10 != \"\"; \"|\" + 5.ALT_C10; \"\") + if(5.ALT_C11 != \"\"; \"|\" + 5.ALT_C11; \"\") + if(5.ALT_C12 != \"\"; \"|\" + 5.ALT_C12; \"\") + if(5.ALT_C13 != \"\"; \"|\" + 5.ALT_C13; \"\") + if(5.ALT_C14 != \"\"; \"|\" + 5.ALT_C14; \"\") + if(5.ALT_C15 != \"\"; \"|\" + 5.ALT_C15; \"\") + if(5.ALT_C16 != \"\"; \"|\" + 5.ALT_C16; \"\") + if(5.ALT_C17 != \"\"; \"|\" + 5.ALT_C17; \"\") + if(5.ALT_C18 != \"\"; \"|\" + 5.ALT_C18; \"\") + if(5.ALT_C19 != \"\"; \"|\" + 5.ALT_C19; \"\") + if(5.ALT_C20 != \"\"; \"|\" + 5.ALT_C20; \"\") + if(5.ALT_C21 != \"\"; \"|\" + 5.ALT_C21; \"\") + if(5.ALT_C22 != \"\"; \"|\" + 5.ALT_C22; \"\") + if(5.ALT_C23 != \"\"; \"|\" + 5.ALT_C23; \"\") + if(5.ALT_C24 != \"\"; \"|\" + 5.ALT_C24; \"\")}}"}]},"metadata":{"designer":{"x":1200,"y":150}}},{"id":6,"module":"util:SetVariables","version":1,"parameters":{},"mapper":{"scope":"roundtrip","variables":[{"name":"ALTERNATIVA1","value":"{{ifempty(get(split(37.ALTERNATIVES_TEXT; \"|\"); 2); \"\")}}"}]},"metadata":{"designer":{"x":1500,"y":150},"restore":{"expect":{"scope":{"label":"One cycle"},"variables":{"items":[null,null,null]}}},"expect":[{"name":"variables","spec":[{"name":"name","type":"text","label":"Variable name","required":true},{"name":"value","type":"any","label":"Variable value"}],"type":"array","label":"Variables"},{"name":"scope","type":"select","label":"Variable lifetime","required":true,"validate":{"enum":["roundtrip","execution"]}}],"interface":[{"name":"ALTERNATIVA1","type":"any","label":"ALTERNATIVA1"}]}},{"id":35,"module":"util:SetVariables","version":1,"parameters":{},"mapper":{"scope":"roundtrip","variables":[{"name":"ALTERNATIVA2","value":"{{ifempty(get(split(37.ALTERNATIVES_TEXT; \"|\"); 3); \"\")}}"}]},"metadata":{"designer":{"x":1620,"y":90},"restore":{"expect":{"scope":{"label":"One cycle"},"variables":{"items":[null,null,null]}}},"expect":[{"name":"variables","spec":[{"name":"name","type":"text","label":"Variable name","required":true},{"name":"value","type":"any","label":"Variable value"}],"type":"array","label":"Variables"},{"name":"scope","type":"select","label":"Variable lifetime","required":true,"validate":{"enum":["roundtrip","execution"]}}],"interface":[{"name":"ALTERNATIVA2","type":"any","label":"ALTERNATIVA2"}]}},{"id":36,"module":"util:SetVariables","version":1,"parameters":{},"mapper":{"scope":"roundtrip","variables":[{"name":"ALTERNATIVA3","value":"{{ifempty(get(split(37.ALTERNATIVES_TEXT; \"|\"); 4); \"\")}}"}]},"metadata":{"designer":{"x":1740,"y":90},"restore":{"expect":{"scope":{"label":"One cycle"},"variables":{"items":[null,null,null]}}},"expect":[{"name":"variables","spec":[{"name":"name","type":"text","label":"Variable name","required":true},{"name":"value","type":"any","label":"Variable value"}],"type":"array","label":"Variables"},{"name":"scope","type":"select","label":"Variable lifetime","required":true,"validate":{"enum":["roundtrip","execution"]}}],"interface":[{"name":"ALTERNATIVA3","type":"any","label":"ALTERNATIVA3"}]}},{"id":7,"module":"builtin:BasicRouter","version":1,"mapper":null,"metadata":{"designer":{"x":1800,"y":150}},"routes":[{"flow":[{"id":8,"module":"gateway:WebhookRespond","version":1,"parameters":{},"filter":{"name":"HORARIO_LIBRE","conditions":[[{"a":"{{5.slotSolicitadoOcupado}}","b":"true","o":"text:notequal"}]]},"mapper":{"body":"{\"DISPONIBILIDAD\": \"libre\"}","status":"200","headers":[]},"metadata":{"designer":{"x":2100,"y":0},"expect":[{"name":"status","type":"uinteger","label":"Status","required":true},{"name":"body","type":"any","label":"Body"},{"name":"headers","type":"array","label":"Custom headers"}],"advanced":true}}]},{"flow":[{"id":9,"module":"gateway:WebhookRespond","version":1,"parameters":{},"filter":{"name":"HORARIO_OCUPADO","conditions":[[{"a":"{{5.slotSolicitadoOcupado}}","b":"true","o":"text:equal"}]]},"mapper":{"body":"{\"DISPONIBILIDAD\": \"ocupado\", \"ALTERNATIVA1\": \"{{6.ALTERNATIVA1}}\", \"ALTERNATIVA2\": \"{{35.ALTERNATIVA2}}\", \"ALTERNATIVA3\": \"{{36.ALTERNATIVA3}}\"}","status":"200","headers":[]},"metadata":{"designer":{"x":2100,"y":300},"expect":[{"name":"status","type":"uinteger","label":"Status","required":true},{"name":"body","type":"any","label":"Body"},{"name":"headers","type":"array","label":"Custom headers"}],"advanced":true}}]}]}],"metadata":{"instant":true,"version":1,"scenario":{"roundtrips":1,"maxErrors":3,"autoCommit":true,"autoCommitTriggerLast":true,"sequential":false,"slots":null,"confidential":false,"dataloss":false,"dlq":false,"freshVariables":false},"designer":{"orphans":[]},"zone":"eu1.make.com","notes":[]}}
+{
+  "name": "1. CONSULTAR_DISPONIBILIDAD_DEF",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": {
+        "hook": 3077877,
+        "maxResults": 1
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 150
+        },
+        "restore": {
+          "parameters": {
+            "hook": {
+              "label": "My gateway-webhook webhook",
+              "data": {
+                "editable": "true"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hook",
+            "type": "hook:gateway-webhook",
+            "label": "Webhook",
+            "required": true
+          },
+          {
+            "name": "maxResults",
+            "type": "number",
+            "label": "Maximum number of results"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "util:SetVariables",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "scope": "roundtrip",
+        "variables": [
+          {
+            "name": "fechaISO",
+            "value": "{{formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"YYYY-MM-DD\")}}"
+          },
+          {
+            "name": "fechaSiguienteISO",
+            "value": "{{formatDate(addDays(parseDate(1.fecha; \"DD/MM/YYYY\"); 1); \"YYYY-MM-DD\")}}"
+          },
+          {
+            "name": "weekDay",
+            "value": "{{formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"d\"; \"Europe/Madrid\")}}"
+          },
+          {
+            "name": "apertura1Min",
+            "value": "{{switch(formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"d\"; \"Europe/Madrid\"); \"0\"; 660; 0; 660; \"1\"; -1; 1; -1; \"2\"; -1; 2; -1; \"3\"; 1020; 3; 1020; \"4\"; 660; 4; 660; \"5\"; 600; 5; 600; \"6\"; 660; 6; 660; -1)}}"
+          },
+          {
+            "name": "cierre1Min",
+            "value": "{{switch(formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"d\"; \"Europe/Madrid\"); \"0\"; 840; 0; 840; \"1\"; -1; 1; -1; \"2\"; -1; 2; -1; \"3\"; 1260; 3; 1260; \"4\"; 840; 4; 840; \"5\"; 840; 5; 840; \"6\"; 1440; 6; 1440; -1)}}"
+          },
+          {
+            "name": "apertura2Min",
+            "value": "{{switch(formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"d\"; \"Europe/Madrid\"); \"0\"; 1020; 0; 1020; \"1\"; -1; 1; -1; \"2\"; -1; 2; -1; \"3\"; -1; 3; -1; \"4\"; 1020; 4; 1020; \"5\"; 1020; 5; 1020; \"6\"; -1; 6; -1; -1)}}"
+          },
+          {
+            "name": "cierre2Min",
+            "value": "{{switch(formatDate(parseDate(1.fecha; \"DD/MM/YYYY\"); \"d\"; \"Europe/Madrid\"); \"0\"; 1260; 0; 1260; \"1\"; -1; 1; -1; \"2\"; -1; 2; -1; \"3\"; -1; 3; -1; \"4\"; 1260; 4; 1260; \"5\"; 1380; 5; 1380; \"6\"; -1; 6; -1; -1)}}"
+          },
+          {
+            "name": "C1",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -15); \"HH:mm\")}}"
+          },
+          {
+            "name": "C2",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 15); \"HH:mm\")}}"
+          },
+          {
+            "name": "C3",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -30); \"HH:mm\")}}"
+          },
+          {
+            "name": "C4",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 30); \"HH:mm\")}}"
+          },
+          {
+            "name": "C5",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -45); \"HH:mm\")}}"
+          },
+          {
+            "name": "C6",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 45); \"HH:mm\")}}"
+          },
+          {
+            "name": "C7",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -60); \"HH:mm\")}}"
+          },
+          {
+            "name": "C8",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 60); \"HH:mm\")}}"
+          },
+          {
+            "name": "C9",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -75); \"HH:mm\")}}"
+          },
+          {
+            "name": "C10",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 75); \"HH:mm\")}}"
+          },
+          {
+            "name": "C11",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -90); \"HH:mm\")}}"
+          },
+          {
+            "name": "C12",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 90); \"HH:mm\")}}"
+          },
+          {
+            "name": "C13",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -105); \"HH:mm\")}}"
+          },
+          {
+            "name": "C14",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 105); \"HH:mm\")}}"
+          },
+          {
+            "name": "C15",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -120); \"HH:mm\")}}"
+          },
+          {
+            "name": "C16",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 120); \"HH:mm\")}}"
+          },
+          {
+            "name": "C17",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -135); \"HH:mm\")}}"
+          },
+          {
+            "name": "C18",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 135); \"HH:mm\")}}"
+          },
+          {
+            "name": "C19",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -150); \"HH:mm\")}}"
+          },
+          {
+            "name": "C20",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 150); \"HH:mm\")}}"
+          },
+          {
+            "name": "C21",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -165); \"HH:mm\")}}"
+          },
+          {
+            "name": "C22",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 165); \"HH:mm\")}}"
+          },
+          {
+            "name": "C23",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); -180); \"HH:mm\")}}"
+          },
+          {
+            "name": "C24",
+            "value": "{{formatDate(addMinutes(parseDate(trim(1.hora); \"HH:mm\"); 180); \"HH:mm\")}}"
+          }
+        ]
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 150
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "google-calendar:searchEvents",
+      "version": 5,
+      "parameters": {
+        "__IMTCONN__": 7578567
+      },
+      "mapper": {
+        "calendar": "b29708f3e9429dd1a654bbe04357fdf7b9a27accb84b499a1c159a2d814deae0@group.calendar.google.com",
+        "timeMin": "{{2.fechaISO}}T00:00:00",
+        "timeMax": "{{2.fechaSiguienteISO}}T00:00:00",
+        "singleEvents": true,
+        "orderBy": "startTime",
+        "limit": "100"
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 150
+        },
+        "restore": {
+          "parameters": {
+            "__IMTCONN__": {
+              "label": "My Google connection (iaworkflows.engine@gmail.com)",
+              "data": {
+                "scoped": "true",
+                "connection": "google"
+              }
+            }
+          },
+          "expect": {
+            "calendar": {
+              "mode": "chose",
+              "label": "minigolf"
+            },
+            "eventTypes": {
+              "mode": "chose"
+            },
+            "orderBy": {
+              "mode": "chose",
+              "label": "Start Time (ascending)"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "__IMTCONN__",
+            "type": "account:google",
+            "label": "Connection",
+            "required": true
+          }
+        ],
+        "expect": [
+          {
+            "name": "calendar",
+            "type": "select",
+            "label": "Calendar ID",
+            "required": true
+          },
+          {
+            "name": "timeMin",
+            "type": "date",
+            "label": "Start Date",
+            "time": true
+          },
+          {
+            "name": "timeMax",
+            "type": "date",
+            "label": "End Date",
+            "time": true
+          },
+          {
+            "name": "updatedMin",
+            "type": "date",
+            "label": "Updated from",
+            "time": true
+          },
+          {
+            "name": "singleEvents",
+            "type": "boolean",
+            "label": "Single Events",
+            "required": true
+          },
+          {
+            "name": "q",
+            "type": "text",
+            "label": "Query"
+          },
+          {
+            "name": "eventTypes",
+            "type": "select",
+            "label": "Event Types",
+            "multiple": true,
+            "validate": {
+              "enum": [
+                "default",
+                "fromGmail",
+                "focusTime",
+                "outOfOffice",
+                "workingLocation"
+              ]
+            }
+          },
+          {
+            "name": "orderBy",
+            "type": "select",
+            "label": "Order By",
+            "validate": {
+              "enum": [
+                "startTime",
+                "updated"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "type": "uinteger",
+            "label": "Limit"
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "module": "util:TextAggregator",
+      "version": 1,
+      "parameters": {
+        "feeder": 3,
+        "rowSeparator": "other",
+        "otherRowSeparator": ""
+      },
+      "mapper": {
+        "value": "{{if(formatDate(3.start; \"HH:mm\"; \"Europe/Madrid\") = \"00:00\"; \"BD\"; if((parseNumber(formatDate(3.end; \"X\"; \"Europe/Madrid\")) - parseNumber(formatDate(3.start; \"X\"; \"Europe/Madrid\"))) >= 7200; if(parseNumber(formatDate(3.start; \"X\"; \"Europe/Madrid\")) < parseNumber(formatDate(addMinutes(parseDate(2.fechaISO; \"YYYY-MM-DD\"); ((parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5))) + 15)); \"X\"; \"Europe/Madrid\")); if(parseNumber(formatDate(3.end; \"X\"; \"Europe/Madrid\")) > parseNumber(formatDate(addMinutes(parseDate(2.fechaISO; \"YYYY-MM-DD\"); (parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5)))); \"X\"; \"Europe/Madrid\")); \"B\" + formatDate(3.end; \"HHmm\"; \"Europe/Madrid\"); if(parseNumber(formatDate(3.start; \"X\"; \"Europe/Madrid\")) = parseNumber(formatDate(addMinutes(parseDate(2.fechaISO; \"YYYY-MM-DD\"); (parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5)))); \"X\"; \"Europe/Madrid\")); \"R\"; formatDate(3.start; \"HH:mm\"; \"Europe/Madrid\"))); if(parseNumber(formatDate(3.start; \"X\"; \"Europe/Madrid\")) = parseNumber(formatDate(addMinutes(parseDate(2.fechaISO; \"YYYY-MM-DD\"); (parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5)))); \"X\"; \"Europe/Madrid\")); \"R\"; formatDate(3.start; \"HH:mm\"; \"Europe/Madrid\"))); if(parseNumber(formatDate(3.start; \"X\"; \"Europe/Madrid\")) = parseNumber(formatDate(addMinutes(parseDate(2.fechaISO; \"YYYY-MM-DD\"); (parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5)))); \"X\"; \"Europe/Madrid\")); \"R\"; formatDate(3.start; \"HH:mm\"; \"Europe/Madrid\"))))}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 150
+        },
+        "restore": {
+          "extra": {
+            "feeder": {
+              "label": "Google Calendar - Search Events [3]"
+            }
+          },
+          "parameters": {
+            "rowSeparator": {
+              "label": "Other"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "rowSeparator",
+            "type": "select",
+            "label": "Row separator",
+            "validate": {
+              "enum": [
+                "\n",
+                "\t",
+                "other"
+              ]
+            }
+          },
+          {
+            "name": "otherRowSeparator",
+            "type": "text",
+            "label": "Separator"
+          }
+        ],
+        "expect": [
+          {
+            "name": "value",
+            "type": "text",
+            "label": "Text"
+          }
+        ],
+        "advanced": true
+      }
+    },
+    {
+      "id": 5,
+      "module": "util:SetVariables",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "scope": "roundtrip",
+        "variables": [
+          {
+            "name": "slotSolicitadoOcupado",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"B\"); true; if(contains(ifempty(10.text; \"\"); \"RR\"); true; if(((((parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 0; 2)) * 60 + parseNumber(substring(formatDate(parseDate(trim(1.hora); \"HH:mm\"); \"HH:mm\"); 3; 5))) + 15) <= 2.cierre2Min)); false; true)))}}"
+          },
+          {
+            "name": "ALT_C1",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C1; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C1 + 2.C1); \"\"; if(((((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C1; 0; 2)) * 60 + parseNumber(substring(2.C1; 3; 5))) + 15) <= 2.cierre2Min)); 2.C1; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C2",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C2; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C2 + 2.C2); \"\"; if(((((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C2; 0; 2)) * 60 + parseNumber(substring(2.C2; 3; 5))) + 15) <= 2.cierre2Min)); 2.C2; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C3",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C3; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C3 + 2.C3); \"\"; if(((((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C3; 0; 2)) * 60 + parseNumber(substring(2.C3; 3; 5))) + 15) <= 2.cierre2Min)); 2.C3; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C4",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C4; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C4 + 2.C4); \"\"; if(((((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C4; 0; 2)) * 60 + parseNumber(substring(2.C4; 3; 5))) + 15) <= 2.cierre2Min)); 2.C4; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C5",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C5; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C5 + 2.C5); \"\"; if(((((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C5; 0; 2)) * 60 + parseNumber(substring(2.C5; 3; 5))) + 15) <= 2.cierre2Min)); 2.C5; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C6",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C6; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C6 + 2.C6); \"\"; if(((((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C6; 0; 2)) * 60 + parseNumber(substring(2.C6; 3; 5))) + 15) <= 2.cierre2Min)); 2.C6; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C7",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C7; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C7 + 2.C7); \"\"; if(((((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C7; 0; 2)) * 60 + parseNumber(substring(2.C7; 3; 5))) + 15) <= 2.cierre2Min)); 2.C7; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C8",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C8; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C8 + 2.C8); \"\"; if(((((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C8; 0; 2)) * 60 + parseNumber(substring(2.C8; 3; 5))) + 15) <= 2.cierre2Min)); 2.C8; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C9",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C9; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C9 + 2.C9); \"\"; if(((((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C9; 0; 2)) * 60 + parseNumber(substring(2.C9; 3; 5))) + 15) <= 2.cierre2Min)); 2.C9; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C10",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C10; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C10 + 2.C10); \"\"; if(((((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C10; 0; 2)) * 60 + parseNumber(substring(2.C10; 3; 5))) + 15) <= 2.cierre2Min)); 2.C10; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C11",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C11; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C11 + 2.C11); \"\"; if(((((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C11; 0; 2)) * 60 + parseNumber(substring(2.C11; 3; 5))) + 15) <= 2.cierre2Min)); 2.C11; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C12",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C12; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C12 + 2.C12); \"\"; if(((((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C12; 0; 2)) * 60 + parseNumber(substring(2.C12; 3; 5))) + 15) <= 2.cierre2Min)); 2.C12; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C13",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C13; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C13 + 2.C13); \"\"; if(((((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C13; 0; 2)) * 60 + parseNumber(substring(2.C13; 3; 5))) + 15) <= 2.cierre2Min)); 2.C13; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C14",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C14; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C14 + 2.C14); \"\"; if(((((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C14; 0; 2)) * 60 + parseNumber(substring(2.C14; 3; 5))) + 15) <= 2.cierre2Min)); 2.C14; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C15",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C15; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C15 + 2.C15); \"\"; if(((((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C15; 0; 2)) * 60 + parseNumber(substring(2.C15; 3; 5))) + 15) <= 2.cierre2Min)); 2.C15; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C16",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C16; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C16 + 2.C16); \"\"; if(((((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C16; 0; 2)) * 60 + parseNumber(substring(2.C16; 3; 5))) + 15) <= 2.cierre2Min)); 2.C16; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C17",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C17; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C17 + 2.C17); \"\"; if(((((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C17; 0; 2)) * 60 + parseNumber(substring(2.C17; 3; 5))) + 15) <= 2.cierre2Min)); 2.C17; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C18",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C18; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C18 + 2.C18); \"\"; if(((((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C18; 0; 2)) * 60 + parseNumber(substring(2.C18; 3; 5))) + 15) <= 2.cierre2Min)); 2.C18; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C19",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C19; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C19 + 2.C19); \"\"; if(((((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C19; 0; 2)) * 60 + parseNumber(substring(2.C19; 3; 5))) + 15) <= 2.cierre2Min)); 2.C19; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C20",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C20; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C20 + 2.C20); \"\"; if(((((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C20; 0; 2)) * 60 + parseNumber(substring(2.C20; 3; 5))) + 15) <= 2.cierre2Min)); 2.C20; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C21",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C21; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C21 + 2.C21); \"\"; if(((((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C21; 0; 2)) * 60 + parseNumber(substring(2.C21; 3; 5))) + 15) <= 2.cierre2Min)); 2.C21; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C22",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C22; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C22 + 2.C22); \"\"; if(((((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C22; 0; 2)) * 60 + parseNumber(substring(2.C22; 3; 5))) + 15) <= 2.cierre2Min)); 2.C22; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C23",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C23; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C23 + 2.C23); \"\"; if(((((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C23; 0; 2)) * 60 + parseNumber(substring(2.C23; 3; 5))) + 15) <= 2.cierre2Min)); 2.C23; \"\"))))}}"
+          },
+          {
+            "name": "ALT_C24",
+            "value": "{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"\"; if(contains(ifempty(10.text; \"\"); \"B\"); if(((((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5))) + 15) <= 2.cierre2Min)); if(parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5)) >= parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 0; 2)) * 60 + parseNumber(substring(get(split(ifempty(10.text; \"\"); \"B\"); 2); 2; 4)); 2.C24; \"\"); \"\"); if(contains(ifempty(10.text; \"\"); 2.C24 + 2.C24); \"\"; if(((((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5)))) >= 2.apertura1Min + and + ((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5))) + 15) <= 2.cierre1Min) + or + (((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5)))) >= 2.apertura2Min + and + ((parseNumber(substring(2.C24; 0; 2)) * 60 + parseNumber(substring(2.C24; 3; 5))) + 15) <= 2.cierre2Min)); 2.C24; \"\"))))}}"
+          }
+        ]
+      },
+      "metadata": {
+        "designer": {
+          "x": 1200,
+          "y": 150
+        },
+        "restore": {
+          "expect": {
+            "scope": {
+              "label": "One cycle"
+            },
+            "variables": {
+              "items": [
+                {
+                  "name": {
+                    "collapsed": true
+                  }
+                },
+                {
+                  "name": {
+                    "collapsed": true
+                  }
+                },
+                {
+                  "name": {
+                    "collapsed": true
+                  }
+                },
+                {
+                  "name": {
+                    "collapsed": true
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expect": [
+          {
+            "name": "variables",
+            "spec": [
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Variable name",
+                "required": true
+              },
+              {
+                "name": "value",
+                "type": "any",
+                "label": "Variable value"
+              }
+            ],
+            "type": "array",
+            "label": "Variables"
+          },
+          {
+            "name": "scope",
+            "type": "select",
+            "label": "Variable lifetime",
+            "required": true,
+            "validate": {
+              "enum": [
+                "roundtrip",
+                "execution"
+              ]
+            }
+          }
+        ],
+        "interface": [
+          {
+            "name": "slotSolicitadoOcupado",
+            "type": "any",
+            "label": "slotSolicitadoOcupado"
+          },
+          {
+            "name": "ALT_C1",
+            "type": "any",
+            "label": "ALT_C1"
+          },
+          {
+            "name": "ALT_C2",
+            "type": "any",
+            "label": "ALT_C2"
+          },
+          {
+            "name": "ALT_C3",
+            "type": "any",
+            "label": "ALT_C3"
+          },
+          {
+            "name": "ALT_C4",
+            "type": "any",
+            "label": "ALT_C4"
+          },
+          {
+            "name": "ALT_C5",
+            "type": "any",
+            "label": "ALT_C5"
+          },
+          {
+            "name": "ALT_C6",
+            "type": "any",
+            "label": "ALT_C6"
+          },
+          {
+            "name": "ALT_C7",
+            "type": "any",
+            "label": "ALT_C7"
+          },
+          {
+            "name": "ALT_C8",
+            "type": "any",
+            "label": "ALT_C8"
+          },
+          {
+            "name": "ALT_C9",
+            "type": "any",
+            "label": "ALT_C9"
+          },
+          {
+            "name": "ALT_C10",
+            "type": "any",
+            "label": "ALT_C10"
+          },
+          {
+            "name": "ALT_C11",
+            "type": "any",
+            "label": "ALT_C11"
+          },
+          {
+            "name": "ALT_C12",
+            "type": "any",
+            "label": "ALT_C12"
+          },
+          {
+            "name": "ALT_C13",
+            "type": "any",
+            "label": "ALT_C13"
+          },
+          {
+            "name": "ALT_C14",
+            "type": "any",
+            "label": "ALT_C14"
+          },
+          {
+            "name": "ALT_C15",
+            "type": "any",
+            "label": "ALT_C15"
+          },
+          {
+            "name": "ALT_C16",
+            "type": "any",
+            "label": "ALT_C16"
+          },
+          {
+            "name": "ALT_C17",
+            "type": "any",
+            "label": "ALT_C17"
+          },
+          {
+            "name": "ALT_C18",
+            "type": "any",
+            "label": "ALT_C18"
+          },
+          {
+            "name": "ALT_C19",
+            "type": "any",
+            "label": "ALT_C19"
+          },
+          {
+            "name": "ALT_C20",
+            "type": "any",
+            "label": "ALT_C20"
+          },
+          {
+            "name": "ALT_C21",
+            "type": "any",
+            "label": "ALT_C21"
+          },
+          {
+            "name": "ALT_C22",
+            "type": "any",
+            "label": "ALT_C22"
+          },
+          {
+            "name": "ALT_C23",
+            "type": "any",
+            "label": "ALT_C23"
+          },
+          {
+            "name": "ALT_C24",
+            "type": "any",
+            "label": "ALT_C24"
+          }
+        ]
+      }
+    },
+    {
+      "id": 37,
+      "module": "util:SetVariables",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "scope": "roundtrip",
+        "variables": [
+          {
+            "name": "ALTERNATIVES_TEXT",
+            "value": "{{\"ST\" + if(5.ALT_C1 != \"\"; \"|\" + 5.ALT_C1; \"\") + if(5.ALT_C2 != \"\"; \"|\" + 5.ALT_C2; \"\") + if(5.ALT_C3 != \"\"; \"|\" + 5.ALT_C3; \"\") + if(5.ALT_C4 != \"\"; \"|\" + 5.ALT_C4; \"\") + if(5.ALT_C5 != \"\"; \"|\" + 5.ALT_C5; \"\") + if(5.ALT_C6 != \"\"; \"|\" + 5.ALT_C6; \"\") + if(5.ALT_C7 != \"\"; \"|\" + 5.ALT_C7; \"\") + if(5.ALT_C8 != \"\"; \"|\" + 5.ALT_C8; \"\") + if(5.ALT_C9 != \"\"; \"|\" + 5.ALT_C9; \"\") + if(5.ALT_C10 != \"\"; \"|\" + 5.ALT_C10; \"\") + if(5.ALT_C11 != \"\"; \"|\" + 5.ALT_C11; \"\") + if(5.ALT_C12 != \"\"; \"|\" + 5.ALT_C12; \"\") + if(5.ALT_C13 != \"\"; \"|\" + 5.ALT_C13; \"\") + if(5.ALT_C14 != \"\"; \"|\" + 5.ALT_C14; \"\") + if(5.ALT_C15 != \"\"; \"|\" + 5.ALT_C15; \"\") + if(5.ALT_C16 != \"\"; \"|\" + 5.ALT_C16; \"\") + if(5.ALT_C17 != \"\"; \"|\" + 5.ALT_C17; \"\") + if(5.ALT_C18 != \"\"; \"|\" + 5.ALT_C18; \"\") + if(5.ALT_C19 != \"\"; \"|\" + 5.ALT_C19; \"\") + if(5.ALT_C20 != \"\"; \"|\" + 5.ALT_C20; \"\") + if(5.ALT_C21 != \"\"; \"|\" + 5.ALT_C21; \"\") + if(5.ALT_C22 != \"\"; \"|\" + 5.ALT_C22; \"\") + if(5.ALT_C23 != \"\"; \"|\" + 5.ALT_C23; \"\") + if(5.ALT_C24 != \"\"; \"|\" + 5.ALT_C24; \"\")}}"
+          }
+        ]
+      },
+      "metadata": {
+        "designer": {
+          "x": 1200,
+          "y": 150
+        }
+      }
+    },
+    {
+      "id": 6,
+      "module": "util:SetVariables",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "scope": "roundtrip",
+        "variables": [
+          {
+            "name": "ALTERNATIVA1",
+            "value": "{{ifempty(get(split(37.ALTERNATIVES_TEXT; \"|\"); 2); \"\")}}"
+          }
+        ]
+      },
+      "metadata": {
+        "designer": {
+          "x": 1500,
+          "y": 150
+        },
+        "restore": {
+          "expect": {
+            "scope": {
+              "label": "One cycle"
+            },
+            "variables": {
+              "items": [
+                null,
+                null,
+                null
+              ]
+            }
+          }
+        },
+        "expect": [
+          {
+            "name": "variables",
+            "spec": [
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Variable name",
+                "required": true
+              },
+              {
+                "name": "value",
+                "type": "any",
+                "label": "Variable value"
+              }
+            ],
+            "type": "array",
+            "label": "Variables"
+          },
+          {
+            "name": "scope",
+            "type": "select",
+            "label": "Variable lifetime",
+            "required": true,
+            "validate": {
+              "enum": [
+                "roundtrip",
+                "execution"
+              ]
+            }
+          }
+        ],
+        "interface": [
+          {
+            "name": "ALTERNATIVA1",
+            "type": "any",
+            "label": "ALTERNATIVA1"
+          }
+        ]
+      }
+    },
+    {
+      "id": 35,
+      "module": "util:SetVariables",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "scope": "roundtrip",
+        "variables": [
+          {
+            "name": "ALTERNATIVA2",
+            "value": "{{ifempty(get(split(37.ALTERNATIVES_TEXT; \"|\"); 3); \"\")}}"
+          }
+        ]
+      },
+      "metadata": {
+        "designer": {
+          "x": 1620,
+          "y": 90
+        },
+        "restore": {
+          "expect": {
+            "scope": {
+              "label": "One cycle"
+            },
+            "variables": {
+              "items": [
+                null,
+                null,
+                null
+              ]
+            }
+          }
+        },
+        "expect": [
+          {
+            "name": "variables",
+            "spec": [
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Variable name",
+                "required": true
+              },
+              {
+                "name": "value",
+                "type": "any",
+                "label": "Variable value"
+              }
+            ],
+            "type": "array",
+            "label": "Variables"
+          },
+          {
+            "name": "scope",
+            "type": "select",
+            "label": "Variable lifetime",
+            "required": true,
+            "validate": {
+              "enum": [
+                "roundtrip",
+                "execution"
+              ]
+            }
+          }
+        ],
+        "interface": [
+          {
+            "name": "ALTERNATIVA2",
+            "type": "any",
+            "label": "ALTERNATIVA2"
+          }
+        ]
+      }
+    },
+    {
+      "id": 36,
+      "module": "util:SetVariables",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "scope": "roundtrip",
+        "variables": [
+          {
+            "name": "ALTERNATIVA3",
+            "value": "{{ifempty(get(split(37.ALTERNATIVES_TEXT; \"|\"); 4); \"\")}}"
+          }
+        ]
+      },
+      "metadata": {
+        "designer": {
+          "x": 1740,
+          "y": 90
+        },
+        "restore": {
+          "expect": {
+            "scope": {
+              "label": "One cycle"
+            },
+            "variables": {
+              "items": [
+                null,
+                null,
+                null
+              ]
+            }
+          }
+        },
+        "expect": [
+          {
+            "name": "variables",
+            "spec": [
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Variable name",
+                "required": true
+              },
+              {
+                "name": "value",
+                "type": "any",
+                "label": "Variable value"
+              }
+            ],
+            "type": "array",
+            "label": "Variables"
+          },
+          {
+            "name": "scope",
+            "type": "select",
+            "label": "Variable lifetime",
+            "required": true,
+            "validate": {
+              "enum": [
+                "roundtrip",
+                "execution"
+              ]
+            }
+          }
+        ],
+        "interface": [
+          {
+            "name": "ALTERNATIVA3",
+            "type": "any",
+            "label": "ALTERNATIVA3"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "module": "builtin:BasicRouter",
+      "version": 1,
+      "mapper": null,
+      "metadata": {
+        "designer": {
+          "x": 1800,
+          "y": 150
+        }
+      },
+      "routes": [
+        {
+          "flow": [
+            {
+              "id": 8,
+              "module": "gateway:WebhookRespond",
+              "version": 1,
+              "parameters": {},
+              "filter": {
+                "name": "HORARIO_LIBRE",
+                "conditions": [
+                  [
+                    {
+                      "a": "{{5.slotSolicitadoOcupado}}",
+                      "b": "true",
+                      "o": "text:notequal"
+                    }
+                  ]
+                ]
+              },
+              "mapper": {
+                "body": "{\"DISPONIBILIDAD\": \"libre\"}",
+                "status": "200",
+                "headers": []
+              },
+              "metadata": {
+                "designer": {
+                  "x": 2100,
+                  "y": 0
+                },
+                "expect": [
+                  {
+                    "name": "status",
+                    "type": "uinteger",
+                    "label": "Status",
+                    "required": true
+                  },
+                  {
+                    "name": "body",
+                    "type": "any",
+                    "label": "Body"
+                  },
+                  {
+                    "name": "headers",
+                    "type": "array",
+                    "label": "Custom headers"
+                  }
+                ],
+                "advanced": true
+              }
+            }
+          ]
+        },
+        {
+          "flow": [
+            {
+              "id": 9,
+              "module": "gateway:WebhookRespond",
+              "version": 1,
+              "parameters": {},
+              "filter": {
+                "name": "HORARIO_OCUPADO",
+                "conditions": [
+                  [
+                    {
+                      "a": "{{5.slotSolicitadoOcupado}}",
+                      "b": "true",
+                      "o": "text:equal"
+                    }
+                  ]
+                ]
+              },
+              "mapper": {
+                "body": "{\"DISPONIBILIDAD\": \"{{if(contains(ifempty(10.text; \"\"); \"BD\"); \"dia_completo\"; \"ocupado\")}}\", \"ALTERNATIVA1\": \"{{6.ALTERNATIVA1}}\", \"ALTERNATIVA2\": \"{{35.ALTERNATIVA2}}\", \"ALTERNATIVA3\": \"{{36.ALTERNATIVA3}}\"}",
+                "status": "200",
+                "headers": []
+              },
+              "metadata": {
+                "designer": {
+                  "x": 2100,
+                  "y": 300
+                },
+                "expect": [
+                  {
+                    "name": "status",
+                    "type": "uinteger",
+                    "label": "Status",
+                    "required": true
+                  },
+                  {
+                    "name": "body",
+                    "type": "any",
+                    "label": "Body"
+                  },
+                  {
+                    "name": "headers",
+                    "type": "array",
+                    "label": "Custom headers"
+                  }
+                ],
+                "advanced": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": {
+      "orphans": []
+    },
+    "zone": "eu1.make.com",
+    "notes": []
+  }
+}
